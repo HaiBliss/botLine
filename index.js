@@ -72,6 +72,7 @@ function getServerToken(jwttoken, callback) {
             console.log(error);
             callback(error);
         } else {
+            console.log("HUUHAI");
             const jsonobj = JSON.parse(body);
             const AccessToken = jsonobj.access_token;
             callback(AccessToken);

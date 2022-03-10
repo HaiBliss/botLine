@@ -22,7 +22,7 @@ server.use(bodyParser.json());
 server.listen(process.env.PORT || 3000);
 
 server.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Hello World! Hữu Hải');
 });
 
 server.post('/callback', (req, res) => {

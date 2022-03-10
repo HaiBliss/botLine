@@ -83,19 +83,26 @@ function getServerToken(jwttoken, callback) {
 //Gửi tin nhắn tới 1 user nhờ vào API do LineWorks cung cấp
 function sendMessage(token, accountId, message) {
     const postdata = {
-        url: 'https://apis.worksmobile.com/' + APIID + '/message/sendMessage/v2',
+        // url: 'https://apis.worksmobile.com/' + APIID + '/message/sendMessage/v2',
+        url: 'https://apis.worksmobile.com/r/'+ APIID +'/message/v1/bot/'+ BOTNO +'/message/push',
+        
         headers : {
           'Content-Type' : 'application/json;charset=UTF-8',
           'consumerKey' : CONSUMERKEY,
           'Authorization' : "Bearer " + token
         },
         json: {
-            "botNo" : Number(BOTNO),
-            "accountId" : accountId,
-            "content" : {
-                "type" : "text",
-                "text" : message
-            }
+            // "botNo" : Number(BOTNO),
+            // "accountId" : accountId,
+            // "content" : {
+            //     "type" : "text",
+            //     "text" : message
+            // }
+            "accountId": "zyyx.vietnam@zyxvietnam",
+            "content": {
+                "type": "text",
+                "text": "Bot đang test mạng?"
+            }        
         }
     };
     request.post(postdata, (error, response, body) => {

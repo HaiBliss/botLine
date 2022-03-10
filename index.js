@@ -15,14 +15,14 @@ const APIID = 'jp2aNLuvXSUrj';
 const SERVERID = '0a8c2dd4dbfd4c5c88e33966f059dc31';
 const CONSUMERKEY = 'cnjEbKf_0uvvBmNER3ui';
 const PRIVATEKEY = fs.readFileSync('./private_20220310191259.key');
-const BOTNO = 1417070;
+const BOTNO = 1417079;
 
 server.use(bodyParser.json());
 
 server.listen(process.env.PORT || 3000);
 
 server.get('/', (req, res) => {
-    res.send('Hello World! Hữu Hải');
+    res.send('Hữu Hải, Hello World!');
 });
 
 server.post('/callback', (req, res) => {

@@ -11,11 +11,10 @@ const qs = require("querystring");
 const fs = require("fs");
 
 //Các thông tin cơ bản mà mình đã nói ở phần ĐĂNG KÝ BOT
-const APIID = "jp2aNLuvXSUrj";
-const SERVERID = "0a8c2dd4dbfd4c5c88e33966f059dc31";
+const APIID = 'jp2aNLuvXSUrj';
+const SERVERID = '0a8c2dd4dbfd4c5c88e33966f059dc31';
 const CONSUMERKEY = 'cnjEbKf_0uvvBmNER3ui';
-//private_20220309135743.key
-const PRIVATEKEY = fs.readFileSync('./private_20220309135743.key');
+const PRIVATEKEY = fs.readFileSync('./private_20220310191259.key');
 const BOTNO = 1417070;
 
 server.use(bodyParser.json());

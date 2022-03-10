@@ -101,7 +101,7 @@ function sendMessage(token, accountId, message) {
             "accountId": "zyyx.vietnam@zyxvietnam",
             "content": {
                 "type": "text",
-                "text": "Bot đang test mạng?"
+                "text": "Nội dung: " + message + " | " + accountId
             }        
         }
     };

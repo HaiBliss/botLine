@@ -99,7 +99,7 @@ function sendMessage(token, accountId, message) {
             //     "type" : "text",
             //     "text" : message
             // }
-            "accountId": "zyyx.vietnam@zyxvietnam",
+            "accountId": accountId,
             "content": {
                 "type": "text",
                 "text": "Text: " + message

@@ -35,6 +35,8 @@ server.post('/callback', (req, res) => {
     getJWT((jwttoken) => {
         getServerToken(jwttoken, (newtoken) => {
             sendMessage(newtoken, accountId, message);
+            console.log("HUU_HAI");
+            console.log(req);
         });
     });
 });
@@ -72,7 +74,6 @@ function getServerToken(jwttoken, callback) {
             console.log(error);
             callback(error);
         } else {
-            console.log("HUUHAI");
             const jsonobj = JSON.parse(body);
             const AccessToken = jsonobj.access_token;
             callback(AccessToken);
@@ -101,7 +102,8 @@ function sendMessage(token, accountId, message) {
             "accountId": "zyyx.vietnam@zyxvietnam",
             "content": {
                 "type": "text",
-                "text": "Nội dung: " + message + " | " + accountId
+                "text": "Text: " + message
+                + "\naccountId:" + accountId
             }        
         }
     };

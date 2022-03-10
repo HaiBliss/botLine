@@ -34,9 +34,7 @@ server.post('/callback', (req, res) => {
 
     getJWT((jwttoken) => {
         getServerToken(jwttoken, (newtoken) => {
-            sendMessage(newtoken, accountId, message);
-            console.log("HUU_HAI");
-            console.log(req);
+            sendMessage(newtoken, accountId, message, req.body);
         });
     });
 });
@@ -82,9 +80,8 @@ function getServerToken(jwttoken, callback) {
 }
 
 //Gửi tin nhắn tới 1 user nhờ vào API do LineWorks cung cấp
-function sendMessage(token, accountId, message) {
+function sendMessage(token, accountId, message, body) {
     const postdata = {
-        // url: 'https://apis.worksmobile.com/' + APIID + '/message/sendMessage/v2',
         url: 'https://apis.worksmobile.com/r/'+ APIID +'/message/v1/bot/'+ BOTNO +'/message/push',
         
         headers : {
@@ -93,17 +90,12 @@ function sendMessage(token, accountId, message) {
           'Authorization' : "Bearer " + token
         },
         json: {
-            // "botNo" : Number(BOTNO),
-            // "accountId" : accountId,
-            // "content" : {
-            //     "type" : "text",
-            //     "text" : message
-            // }
             "accountId": accountId,
             "content": {
                 "type": "text",
                 "text": "Text: " + message
                 + "\naccountId:" + accountId
+                +"\nbody:\n" + body
             }        
         }
     };

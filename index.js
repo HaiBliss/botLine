@@ -96,6 +96,7 @@ function sendMessage(token, accountId, message, body) {
                 "type": "text",
                 "text": "text: " + message
                 + "\naccountId: " + accountId
+                + "\nroomId: " +  body.source.roomId
                 +"\ncreatedTime : " + body.createdTime
             }        
         }

@@ -9,8 +9,9 @@ const https = require("https");
 const request = require("request");
 const qs = require("querystring");
 const fs = require("fs");
+const e = require("express");
 
-//Các thông tin cơ bản mà mình đã nói ở phần ĐĂNG KÝ BOT
+//Các thông tin cơ bản ở phần ĐĂNG KÝ BOT
 const APIID = 'jp2aNLuvXSUrj';
 const SERVERID = '0a8c2dd4dbfd4c5c88e33966f059dc31';
 const CONSUMERKEY = 'cnjEbKf_0uvvBmNER3ui';
@@ -29,7 +30,7 @@ server.post('/callback', (req, res) => {
     res.sendStatus(200);
 
     const message = req.body.content.text;
-    const roomId = req.body.source.roomId;
+    //const roomId = req.body.source.roomId;
     const accountId = req.body.source.accountId;
 
     getJWT((jwttoken) => {
@@ -82,6 +83,33 @@ function getServerToken(jwttoken, callback) {
 //Gửi tin nhắn tới 1 user nhờ vào API do LineWorks cung cấp
 function sendMessage(token, accountId, message, body) {
     console.log(body);
+    const content = {};
+    if (body.content.type == 'text') {
+        content = {
+            "type": body.content.type,
+            "text":
+            "\type: " + body.content.type
+            + "\ntext: " + message
+            + "\naccountId: " + accountId
+            + "\nroomId: " +  body.source.roomId
+            + "\ncreatedTime : " + body.createdTime
+        }       
+    } else if (body.content.type == 'sticker') {
+        content = {
+            "type": body.content.type,
+            "packageId": body.content.packageId,
+            "stickerId": body.content.stickerId
+        }
+    } else {
+        content = {
+            "type": body.content.type,
+            "text":
+            "\type: " + body.content.type
+            + "\naccountId: " + accountId
+            + "\nroomId: " +  body.source.roomId
+            + "\ncreatedTime : " + body.createdTime
+        }     
+    }
     const postdata = {
         url: 'https://apis.worksmobile.com/r/'+ APIID +'/message/v1/bot/'+ BOTNO +'/message/push',
         
@@ -92,13 +120,7 @@ function sendMessage(token, accountId, message, body) {
         },
         json: {
             "accountId": accountId,
-            "content": {
-                "type": "text",
-                "text": "text: " + message
-                + "\naccountId: " + accountId
-                + "\nroomId: " +  body.source.roomId
-                +"\ncreatedTime : " + body.createdTime
-            }        
+            "content": content
         }
     };
     request.post(postdata, (error, response, body) => {

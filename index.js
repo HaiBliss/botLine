@@ -83,33 +83,33 @@ function getServerToken(jwttoken, callback) {
 //Gửi tin nhắn tới 1 user nhờ vào API do LineWorks cung cấp
 function sendMessage(token, accountId, message, body) {
     console.log(body);
-    const content = {};
-    if (body.content.type == 'text') {
-        content = {
-            "type": body.content.type,
-            "text":
-            "\type: " + body.content.type
-            + "\ntext: " + message
-            + "\naccountId: " + accountId
-            + "\nroomId: " +  body.source.roomId
-            + "\ncreatedTime : " + body.createdTime
-        }       
-    } else if (body.content.type == 'sticker') {
-        content = {
-            "type": body.content.type,
-            "packageId": body.content.packageId,
-            "stickerId": body.content.stickerId
-        }
-    } else {
-        content = {
-            "type": body.content.type,
-            "text":
-            "\type: " + body.content.type
-            + "\naccountId: " + accountId
-            + "\nroomId: " +  body.source.roomId
-            + "\ncreatedTime : " + body.createdTime
-        }     
-    }
+    // const content = {};
+    // if (body.content.type == 'text') {
+    //     content = {
+    //         "type": body.content.type,
+    //         "text":
+    //         "\type: " + body.content.type
+    //         + "\ntext: " + message
+    //         + "\naccountId: " + accountId
+    //         + "\nroomId: " +  body.source.roomId
+    //         + "\ncreatedTime : " + body.createdTime
+    //     }       
+    // } else if (body.content.type == 'sticker') {
+    //     content = {
+    //         "type": body.content.type,
+    //         "packageId": body.content.packageId,
+    //         "stickerId": body.content.stickerId
+    //     }
+    // } else {
+    //     content = {
+    //         "type": body.content.type,
+    //         "text":
+    //         "\type: " + body.content.type
+    //         + "\naccountId: " + accountId
+    //         + "\nroomId: " +  body.source.roomId
+    //         + "\ncreatedTime : " + body.createdTime
+    //     }     
+    // }
     const postdata = {
         url: 'https://apis.worksmobile.com/r/'+ APIID +'/message/v1/bot/'+ BOTNO +'/message/push',
         
@@ -121,7 +121,7 @@ function sendMessage(token, accountId, message, body) {
         json: {
             "accountId": accountId,
             "content": {
-                "type": body.content.type,
+                "type": "text",
                 "text":
                 "\type: " + body.content.type
                 + "\ntext: " + message

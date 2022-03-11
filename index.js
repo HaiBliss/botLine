@@ -96,9 +96,17 @@ function sendMessage(token, accountId, message, body) {
         };       
     } else if (body.content.type == 'sticker') {
         content = {
-            "type": body.content.type,
-            "packageId": body.content.packageId,
-            "stickerId": body.content.stickerId
+            // "type": body.content.type,
+            // "packageId": body.content.packageId,
+            // "stickerId": body.content.stickerId
+            "type": "text",
+            "text":
+            "type: " + body.content.type
+            + "\npackageId: " + body.content.packageId
+            + "\nstickerId: " + body.content.stickerId
+            + "\naccountId: " + accountId
+            + "\nroomId: " +  body.source.roomId
+            + "\ncreatedTime : " + body.createdTime
         };
     } else {
         content = {

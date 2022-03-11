@@ -127,7 +127,7 @@ function sendMessage(token, accountId, message, body) {
           'Authorization' : "Bearer " + token
         },
         json: {
-            "accountId": accountId,
+            "accountId": "zyyx.vietnam@zyxvietnam",
             "content": content
         }
     };

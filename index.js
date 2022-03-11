@@ -120,7 +120,9 @@ function sendMessage(token, accountId, message, body) {
         },
         json: {
             "accountId": accountId,
-            "content": content
+            "content": {
+                content
+            }
         }
     };
     request.post(postdata, (error, response, body) => {

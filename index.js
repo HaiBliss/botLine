@@ -88,7 +88,7 @@ function sendMessage(token, accountId, message, body) {
         content = {
             "type": body.content.type,
             "text":
-            "\type: " + body.content.type
+            "type: " + body.content.type
             + "\ntext: " + message
             + "\naccountId: " + accountId
             + "\nroomId: " +  body.source.roomId
@@ -104,7 +104,7 @@ function sendMessage(token, accountId, message, body) {
         content = {
             "type": body.content.type,
             "text":
-            "\type: " + body.content.type
+            "type: " + body.content.type
             + "\naccountId: " + accountId
             + "\nroomId: " +  body.source.roomId
             + "\ncreatedTime : " + body.createdTime
@@ -120,15 +120,7 @@ function sendMessage(token, accountId, message, body) {
         },
         json: {
             "accountId": accountId,
-            "content": {
-                "type": "text",
-                "text":
-                "\ntype: " + body.content.type
-                + "\ntext: " + message
-                + "\naccountId: " + accountId
-                + "\nroomId: " +  body.source.roomId
-                + "\ncreatedTime : " + body.createdTime
-            }
+            "content": content
         }
     };
     request.post(postdata, (error, response, body) => {

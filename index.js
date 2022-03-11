@@ -121,7 +121,13 @@ function sendMessage(token, accountId, message, body) {
         json: {
             "accountId": accountId,
             "content": {
-                content
+                "type": body.content.type,
+                "text":
+                "\type: " + body.content.type
+                + "\ntext: " + message
+                + "\naccountId: " + accountId
+                + "\nroomId: " +  body.source.roomId
+                + "\ncreatedTime : " + body.createdTime
             }
         }
     };

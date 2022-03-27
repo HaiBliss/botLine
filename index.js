@@ -75,6 +75,7 @@ function getServerToken(jwttoken, callback) {
         } else {
             const jsonobj = JSON.parse(body);
             const AccessToken = jsonobj.access_token;
+            console.log('AccessToken: ' + AccessToken);
             callback(AccessToken);
         }
     });
